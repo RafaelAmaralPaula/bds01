@@ -1,10 +1,8 @@
 package com.devsuperior.bds01.controllers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import com.devsuperior.bds01.dto.EmployeeDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,8 +12,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devsuperior.bds01.dto.EmployeeDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -29,6 +29,7 @@ public class EmployeeControllerIT {
 	private ObjectMapper objectMapper;
 	
 	@Test
+	@DisplayName("Find all should return paged resources sorted by name")
 	public void findAllShouldReturnPagedResourcesSortedByName() throws Exception {
 		
 		ResultActions result =
@@ -43,6 +44,7 @@ public class EmployeeControllerIT {
 	}
 	
 	@Test
+	@DisplayName("Insert should insert resource")
 	public void insertShouldInsertResource() throws Exception {
 
 		EmployeeDTO dto = new EmployeeDTO(null, "Joaquim", "joaquim@gmail.com", 1L);
